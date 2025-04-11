@@ -31,4 +31,4 @@ with DAG(
         
     python_xcom_push_by_return_value = xcom_push_result()
     xcom_pull_2(python_xcom_push_by_return_value)
-    python_xcom_push_by_return >> xcom_pull_1()
+    python_xcom_push_by_return_value >> xcom_pull_1()
