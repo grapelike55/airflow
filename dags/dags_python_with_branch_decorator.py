@@ -2,6 +2,7 @@ from airflow.models.dag import DAG
 import datetime
 from airflow.operators.python import PythonOperator
 from airflow.decorators import task
+from datetime import datetime
 
 import pendulum
 import random
