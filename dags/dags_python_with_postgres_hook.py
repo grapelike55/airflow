@@ -13,12 +13,12 @@ with DAG(
 ) as dag:
     
     
-    def insrt_postgres(postgres_conn_id, **kwargs):
+    def insrt_postgres(conn_id, **kwargs):
         # import psycopg2
         from airflow.providers.postgres.hooks.postgres import PostgresHook
         from contextlib import closing
         
-        postgres_hook = PostgresHook(postgres_conn_id)
+        postgres_hook = PostgresHook(conn_id)
         
         with closing(postgres_hook.get_conn()) as conn:
             with closing(conn.cursor()) as cursor:
@@ -33,7 +33,7 @@ with DAG(
     insrt_postgres_with_hook = PythonOperator(
         task_id='insrt_postgres_with_hook',
         python_callable=insrt_postgres,
-        op_args={'postgres_conn_id':'conn-db-postgres-custom' },
+        op_args={'conn_id':'conn-db-postgres-custom' },
     )           
                 
                 
