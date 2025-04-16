@@ -18,7 +18,9 @@ with DAG(
         from airflow.providers.postgres.hooks.postgres import PostgresHook
         from contextlib import closing
         
-        postgres_hook = PostgresHook(conn_id)
+        # postgres_hook = PostgresHook(conn_id)
+        postgres_hook = PostgresHook('conn-db-postgres-custom')
+        
         
         with closing(postgres_hook.get_conn()) as conn:
             with closing(conn.cursor()) as cursor:
@@ -33,6 +35,7 @@ with DAG(
     insrt_postgres_with_hook = PythonOperator(
         task_id='insrt_postgres_with_hook',
         python_callable=insrt_postgres,
+        # op_args={'conn_id':'conn-db-postgres-custom' },
         op_args={'conn_id':'conn-db-postgres-custom' },
     )           
                 
