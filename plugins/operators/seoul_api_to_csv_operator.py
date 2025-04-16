@@ -58,8 +58,9 @@ class SeoulApiToCsvOperator(BaseOperator):
         self.log.info(f"key_nm:{list(contents.keys())[0]}")
         key_nm = list(contents.keys())[0]
         row_data = contents.get(key_nm).get('row')
-        row_df = pd.DataFrame(row_data)
         
+        row_df = pd.DataFrame(row_data)
+        self.log.info(f"row_data:{row_data}")
         return row_df
             
         
