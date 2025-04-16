@@ -17,7 +17,7 @@ class SeoulApiToCsvOperator(BaseOperator):
         import os
         connection = BaseHook.get_connection(self.http_conn_id)
         self.base_url = f'http://{connection.host}:{connection.port}/{self.endpoint}'
-        self.log.info('base_url:',self.base_url )
+        self.log.info(f'base_url:{self.base_url}')
         
         total_row_df = pd.DataFrame()
         start_row = 1
@@ -50,7 +50,7 @@ class SeoulApiToCsvOperator(BaseOperator):
         request_url = f'{base_url}/{start_row}/{end_row}/'
         if self.base_dt is not None:
             request_url = f'{base_url}/{start_row}/{end_row}/{self.base_dt}'
-        self.log.info('requests url:', request_url)
+        self.log.info(f'requests url:{request_url}' )
         response = requests.get(request_url, headers)
         contents = json.loads(response.text)
         
