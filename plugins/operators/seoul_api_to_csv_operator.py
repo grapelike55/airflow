@@ -62,6 +62,7 @@ class SeoulApiToCsvOperator(BaseOperator):
         
         row_df = pd.DataFrame(row_data)
         self.log.info(f"row_data:{row_data}")
+        self.log.info(f"row_df:{row_df}")
         return row_df
             
         
