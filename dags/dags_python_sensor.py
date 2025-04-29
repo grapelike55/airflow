@@ -15,6 +15,7 @@ with DAG(
         from dateutil import relativedelta
         connection = BaseHook.get_connection(http_conn_id)
         url = f'http://{connection.host}:{connection.port}/{endpoint}/1/100'
+        print(f'url: {url}')
         response = requests.get(url)
         
         contents = json.loads(response.text)
